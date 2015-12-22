@@ -1,53 +1,53 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
-'use strict';
+import React, { Component } from 'react-native';
+import * as config from './configuration';
+import Page1 from './components/Page1';
+import Page2 from './components/Page2';
+import Page3 from './components/Page3';
+import CustomNavigationBar from './components/CustomNavigationBar';
 
-var React = require('react-native');
-var {
+const {
   AppRegistry,
-  StyleSheet,
-  Text,
-  View,
+  Navigator
 } = React;
 
-var graphRoutes = React.createClass({
-  render: function() {
+class graphRoutes extends Component {
+    renderScene(route, nav) {
+        switch (route.name) {
+        case 'page1' :
+            return <Page1 />;
+
+        case 'page2' :
+            return <Page2 />;
+
+        case 'page3' :
+            return <Page3 />;
+
+        default :
+            return <Page1 />;
+        }
+    }
+
+    configureScene(route) {
+        if (route.sceneConfig) {
+            return route.sceneConfig;
+        }
+
+        return {
+            ...Navigator.SceneConfigs.HorizontalSwipeJump,
+            gestures: null
+        };
+    }
+
+  render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+        <Navigator
+          configureScene={this.configureScene}
+          initialRoute={config.routes[1]}
+          initialRouteStack={config.routes}
+          renderScene={this.renderScene}
+          navigationBar={<CustomNavigationBar />} />
     );
   }
-});
-
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+};
 
 AppRegistry.registerComponent('graphRoutes', () => graphRoutes);
