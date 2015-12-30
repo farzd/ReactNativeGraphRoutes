@@ -55,7 +55,7 @@ export default class IncidentNavigationBar extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.navigator.props.app.showProfile) {
+        if (nextProps.navigator.props.showProfile) {
             this.setState({
                 routes: ['profile'],
                 routeIndex: 0,

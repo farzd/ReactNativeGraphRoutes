@@ -18,13 +18,21 @@ const styles = StyleSheet.create({
 });
 
 class graphRoutes extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            profileShown: false
+        }
+    }
+
     renderScene(route, nav) {
         switch (route.name) {
         case 'page1' :
             return <Page1 />;
 
         case 'page2' :
-            return <Page2 />;
+            return <Page2 navigator={nav} />;
 
         case 'page3' :
             return <Page3 />;
@@ -46,12 +54,16 @@ class graphRoutes extends Component {
     }
 
   render() {
+      console.log('re render', this.state.profileShown);
+
     return (
             <Navigator
               configureScene={this.configureScene}
               initialRoute={config.routes[1]}
               initialRouteStack={config.routes}
               renderScene={this.renderScene}
+              updateNavBar={() => {console.log('yo'); this.setState({profileShown: true})}}
+              showProfile={this.state.profileShown}
               navigationBar={<CustomNavigationBar />} />
     );
   }

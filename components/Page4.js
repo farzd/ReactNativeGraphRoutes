@@ -11,12 +11,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: window.width,
         height: window.height,
-        transform: [{
-            translateY: 33,
-            translateX: 0
-        }],
         position: 'absolute',
-        bottom: 0
+        left: 0
     },
     text: {
         fontSize: 20,
@@ -25,45 +21,40 @@ const styles = StyleSheet.create({
 });
 
 export default class Page4 extends Component {
-    componentWillReceiveProps(props) {
-        // if (props.app.showProfile) {
-        //     this.panPage();
-        // } else {
-        //     this.panPage('up');
-        // }
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            offset: window.height
+        };
     }
 
-    panPage(pageState) {
-        this.pageTop = new Animated.Value(window.height);
-        this.pageTop = 64;
+    componentWillReceiveProps(props) {
+        this.panPage(props.showProfile);
+    }
 
-        if (pageState) {
-            this.pageTop = new Animated.Value(64);
-            this.pageTop = window.height;
-            this.forceUpdate();
+    panPage(showProfile) {
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+
+        if (showProfile) {
+            this.setState({
+                offset: 64
+            });
+        } else {
+            this.setState({
+                offset: window.height
+            });
         }
-
-        LayoutAnimation.configureNext({
-            duration: 300,
-            create: {
-                type: 'linear',
-                property: LayoutAnimation.Properties.opacity,
-            },
-            update: {
-                type: 'spring',
-                springDamping: 1
-            }
-        });
     }
 
     render() {
         return (
-            <Animated.View style={[styles.wrapper, {top: this.pageTop}]}>
+            <View style={[styles.wrapper, {top: this.state.offset} ]}>
                 <Text style={styles.text}>Profile</Text>
-                <TouchableOpacity onPress={() => { this.props.actions.hideProfile(); }}>
+                <TouchableOpacity onPress={() => { this.props.updateNavBar(); this.panPage();  }}>
                     <Text style={styles.text}> close </Text>
                 </TouchableOpacity>
-            </Animated.View>
+            </View>
         );
     }
 }
