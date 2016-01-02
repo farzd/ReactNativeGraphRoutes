@@ -1,4 +1,9 @@
 # ReactNativeGraphRoutes
-Achieving a graph route with React native navigator component
+Achieving a graph route with ReactNative Navigator component.
 
-Custom navbar component to help achieve a graph like route
+-This uses a custom NavigationBar component to reflect any changes in the routes.
+
+-Because Navigator uses its own state, the NavigationBar component also contains its own state
+-Avoiding any Flux implemntation to make it easy to learn/reverse engineer
+
+![alt text](http://i.imgur.com/LEWopA8.gif, 'screenshot')
