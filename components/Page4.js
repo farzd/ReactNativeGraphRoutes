@@ -5,7 +5,7 @@ const window = Dimensions.get('window');
 const { StyleSheet, Text, View, LayoutAnimation, Animated, TouchableOpacity } = React;
 const styles = StyleSheet.create({
     wrapper: {
-        backgroundColor: 'green',
+        backgroundColor: '#FF9800',
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         left: 0
     },
     text: {
-        fontSize: 20,
+        fontSize: 40,
         color: '#fff'
     }
 });
@@ -50,9 +50,9 @@ export default class Page4 extends Component {
     render() {
         return (
             <View style={[styles.wrapper, {top: this.state.offset} ]}>
-                <Text style={styles.text}>Profile</Text>
-                <TouchableOpacity onPress={() => { this.props.updateNavBar(); this.panPage();  }}>
-                    <Text style={styles.text}> close </Text>
+                <Text style={styles.text}>Page 4</Text>
+                <TouchableOpacity onPress={() => { this.props.updateRoute(); this.panPage(); }}>
+                    <Text style={styles.text, {fontSize: 20}}> close </Text>
                 </TouchableOpacity>
             </View>
         );

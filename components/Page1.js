@@ -4,7 +4,7 @@ const { StyleSheet, Text, View } = React;
 const styles = StyleSheet.create({
     wrapper: {
         marginTop: 20,
-        backgroundColor: '#66BB6A',
+        backgroundColor: '#D50000',
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontSize: 40,
-        color: '#01579B'
+        color: '#FFF'
     }
 });
 

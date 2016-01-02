@@ -22,17 +22,6 @@ const styles = StyleSheet.create({
 export default class Page2 extends Component {
     constructor(props) {
         super(props);
-        this.openProfile = this.openProfile.bind(this);
-
-        this.state = {
-            showProfile: false
-        };
-    }
-
-    openProfile() {
-        this.setState({
-            showProfile: true
-        });
     }
 
     render() {
@@ -40,11 +29,11 @@ export default class Page2 extends Component {
             <View style={styles.wrapper1}>
                 <View style={styles.wrapper}>
                     <Text style={styles.text}>Page 2</Text>
-                    <TouchableOpacity onPress={() => { this.openProfile(); }}>
-                        <Text style={styles.text, {fontSize: 20}}> open profile page </Text>
+                    <TouchableOpacity onPress={this.props.navigator.props.updateRoute}>
+                        <Text style={styles.text, {fontSize: 20}}> open page 4 </Text>
                     </TouchableOpacity>
                 </View>
-                <Page4 updateNavBar={ this.props.navigator.props.updateNavBar } showProfile={this.state.showProfile} />
+                <Page4 updateRoute={this.props.navigator.props.updateRoute} showProfile={this.props.navigator.props.showProfile} />
             </View>
         );
     }

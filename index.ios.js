@@ -59,10 +59,10 @@ class graphRoutes extends Component {
     return (
             <Navigator
               configureScene={this.configureScene}
-              initialRoute={config.routes[1]}
-              initialRouteStack={config.routes}
+              initialRoute={config.routes.default[1]}
+              initialRouteStack={config.routes.default}
               renderScene={this.renderScene}
-              updateNavBar={() => {console.log('yo'); this.setState({profileShown: true})}}
+              updateRoute={() => {this.setState({profileShown: !this.state.profileShown })} }
               showProfile={this.state.profileShown}
               navigationBar={<CustomNavigationBar />} />
     );

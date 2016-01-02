@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react-native';
 const { Text, View, TouchableOpacity, StyleSheet } = React;
+import * as config from '../configuration';
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -37,7 +38,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default class IncidentNavigationBar extends Component {
+export default class CustomNavigationBar extends Component {
     constructor(props) {
         super(props);
         this.goForward = this.goForward.bind(this);
@@ -57,7 +58,7 @@ export default class IncidentNavigationBar extends Component {
     componentWillReceiveProps(nextProps) {
         if (nextProps.navigator.props.showProfile) {
             this.setState({
-                routes: ['profile'],
+                routes: [config.routes.graphRoutes[0].name],
                 routeIndex: 0,
                 newRoute: true
             });
@@ -92,7 +93,7 @@ export default class IncidentNavigationBar extends Component {
         }
 
         if (this.state.newRoute) {
-            this.props.navigator.props.actions.hideProfile();
+            this.props.navigator.props.updateRoute();
         }
     }
 
@@ -138,7 +139,7 @@ export default class IncidentNavigationBar extends Component {
     }
 }
 
-IncidentNavigationBar.propTypes = {
+CustomNavigationBar.propTypes = {
     navState: PropTypes.object,
     navigator: PropTypes.object
 };
