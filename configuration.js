@@ -5,8 +5,5 @@ export const routes = {
         name: 'page2'
     }, {
         name: 'page3'
-    }],
-    graphRoutes: [{
-        name: 'page4'
     }]
 };
